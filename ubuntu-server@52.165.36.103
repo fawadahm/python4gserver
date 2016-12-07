@@ -108,14 +108,10 @@ def receiverHandler(receiverFD):
 
     bytesSent = 0
 
-    while (endOfFile is not True) or (bytesSent < fileSize):
-        #while (sys.getsizeof(senderBuffer)<1024*1024):
-         #   pass
+    while (endOfFile is not True && bytesSent < fileSize):
         receiverFD.sendall(senderBuffer)
-        bytesSent = bytesSent + sys.getsizeof(senderBuffer)
-        senderBuffer = ''
-        print ("sent = " +str(bytesSent/(1000*1000.0)))
-        #print ('Sending')
+        bytesSent = bytesSent = sys.getsizeof(senderBuffer)
+        print ('Sending')
 
 
 
@@ -123,7 +119,7 @@ def receiverHandler(receiverFD):
      #   sendBuffer = sendfile.read()
       #  print ('File read')
 
-    print ('Bytes sent ' + str(bytesSent))
+    print ('Bytes sent ' + bytesSent)
     endTime = datetime.utcnow()
     # if the connection has already been established between sender & server
     # while onGoingConnection is True:
@@ -200,7 +196,7 @@ print 'Main Program : Waiting for a connection'
 #
 
 
-timeLog.write('\nSession = ' + str(datetime.utcnow().strftime('%H_%M_%S_%f')))
+timeLog.write('\nSession = ' + str(datetime.utcnow().strftime('%H_%M_%S.%f')))
 
 counter = 0
 
